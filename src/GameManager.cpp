@@ -162,8 +162,9 @@ bool GameManager::Run()
 
         VIDEODRIVER.ClearScreen();
         WINDOWMANAGER.Draw();
-
-        DrawCursor();
+        #ifndef RTTR_HW_CURSOR
+             DrawCursor();
+        #endif
     } else if(GAMECLIENT.GetGFNumber() % 5000 == 0)
     {
         // if we skip drawing write a comment every 5k gf
