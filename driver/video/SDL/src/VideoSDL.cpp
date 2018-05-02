@@ -180,9 +180,9 @@ bool VideoSDL::CreateScreen(const std::string& title, const VideoMode& newSize, 
 #endif
 
     std::fill(keyboard.begin(), keyboard.end(), false);
-
+#ifndef RTTR_HW_CURSOR
     SDL_ShowCursor(SDL_DISABLE);
-
+#endif
     return true;
 }
 
@@ -482,6 +482,9 @@ bool VideoSDL::MessageLoop()
                 {
                     mouse_xy.rdown = true;
                     CallBack->Msg_RightDown(mouse_xy);
+                    #ifdef RTTR_HW_CURSOR
+                        SDL_ShowCursor(SDL_DISABLE);
+                    #endif
                 }
             }
             break;
@@ -499,6 +502,9 @@ bool VideoSDL::MessageLoop()
                 {
                     mouse_xy.rdown = false;
                     CallBack->Msg_RightUp(mouse_xy);
+                    #ifdef RTTR_HW_CURSOR
+                        SDL_ShowCursor(SDL_ENABLE);
+                    #endif
                 }
                 if(ev.button.button == SDL_BUTTON_WHEELUP)
                 {
