@@ -250,7 +250,7 @@ void GameWorldView::DrawGUI(const RoadBuildState& rb, const TerrainRenderer& ter
             Position curPos = GetWorld().GetNodePos(curPt) - offset + curOffset;
 
             /// Current point indicated by Mouse
-            if(drawMouse && selPt == curPt)
+            if(!show_bq && drawMouse && selPt == curPt)
             {
                 // Mauszeiger am boden
                 unsigned mid = 22;
@@ -461,7 +461,11 @@ void GameWorldView::DrawConstructionAid(const MapPoint& pt, const DrawPoint& cur
     {
         glArchivItem_Bitmap* bm = LOADER.GetMapImageN(49 + bq);
         // Draw building quality icon
+#ifdef RTTR_HW_CURSOR
+        bm->DrawFull(curPos,0xA0FFFFFF);
+#else
         bm->DrawFull(curPos);
+#endif
         // Show ability to construct military buildings
         if(GetWorld().GetGGS().isEnabled(AddonId::MILITARY_AID))
         {
