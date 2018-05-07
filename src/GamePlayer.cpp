@@ -94,18 +94,18 @@ void GamePlayer::LoadStandardToolSettings()
     }
 
     // percentage (tool-settings-window-slider, in 10th percent)
-    toolsSettings_[0] = 1;
-    toolsSettings_[1] = 4;
-    toolsSettings_[2] = 2;
-    toolsSettings_[3] = 5;
-    toolsSettings_[4] = 7;
-    toolsSettings_[5] = 1;
-    toolsSettings_[6] = 3;
-    toolsSettings_[7] = 1;
-    toolsSettings_[8] = 2;
-    toolsSettings_[9] = 1;
-    toolsSettings_[10] = 2;
-    toolsSettings_[11] = 1;
+    toolsSettings_[0] = 0;
+    toolsSettings_[1] = 0;
+    toolsSettings_[2] = 0;
+    toolsSettings_[3] = 0;
+    toolsSettings_[4] = 0;
+    toolsSettings_[5] = 0;
+    toolsSettings_[6] = 0;
+    toolsSettings_[7] = 0;
+    toolsSettings_[8] = 0;
+    toolsSettings_[9] = 0;
+    toolsSettings_[10] = 0;
+    toolsSettings_[11] = 0;
 }
 
 void GamePlayer::LoadStandardMilitarySettings()
