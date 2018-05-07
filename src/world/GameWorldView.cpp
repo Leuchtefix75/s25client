@@ -462,7 +462,7 @@ void GameWorldView::DrawConstructionAid(const MapPoint& pt, const DrawPoint& cur
         glArchivItem_Bitmap* bm = LOADER.GetMapImageN(49 + bq);
         // Draw building quality icon
 #ifdef RTTR_HW_CURSOR
-        bm->DrawFull(curPos,0xA0FFFFFF);
+        bm->DrawFull(curPos,0x77FFFFFF);
 #else
         bm->DrawFull(curPos);
 #endif
