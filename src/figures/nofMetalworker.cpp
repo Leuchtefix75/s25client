@@ -148,8 +148,7 @@ bool nofMetalworker::AreWaresAvailable() const
 bool nofMetalworker::StartWorking()
 {
     nextProducedTool = GetOrderedTool();
-    if(nextProducedTool == GD_NOTHING)
-        nextProducedTool = GetRandomTool();
+//    if(nextProducedTool == GD_NOTHING) nextProducedTool = GetRandomTool();
 
     return (nextProducedTool != GD_NOTHING) && nofWorkman::StartWorking();
 }
