@@ -11,11 +11,14 @@ endif(CCACHE_FOUND)
 
 # set compiler flags
 IF(RTTR_ENABLE_OPTIMIZATIONS)
-  IF("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL "armv7l")
-	FORCE_ADD_FLAGS(CMAKE_C_FLAGS -Ofast -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -DRTTR_HW_CURSOR)
-	FORCE_ADD_FLAGS(CMAKE_CXX_FLAGS -Ofast -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard -DRTTR_HW_CURSOR)
-  ELSE()
+  IF(("${PLATFORM_ARCH}" STREQUAL "x86_64") OR ("${PLATFORM_ARCH}" STREQUAL "i386"))
 	FORCE_ADD_FLAGS(CMAKE_C_FLAGS -ffast-math -mmmx -msse -mfpmath=sse -ggdb)
 	FORCE_ADD_FLAGS(CMAKE_CXX_FLAGS -ffast-math -mmmx -msse -mfpmath=sse -ggdb)
+  ELSEIF("${PLATFORM_ARCH}" STREQUAL "universal")
+        # 4 pears are one apple!
+  ELSE()
+        # simply suggest that all other stuff is ARM
+        FORCE_ADD_FLAGS(CMAKE_C_FLAGS   -O3 -march=armv7-a -mfpu=neon -mfloat-abi=hard -DRTTR_HW_CURSOR)
+        FORCE_ADD_FLAGS(CMAKE_CXX_FLAGS -O3 -march=armv7-a -mfpu=neon -mfloat-abi=hard -DRTTR_HW_CURSOR)
   ENDIF()	
 ENDIF(RTTR_ENABLE_OPTIMIZATIONS)
