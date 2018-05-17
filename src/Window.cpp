@@ -34,6 +34,11 @@ Window::Window(Window* parent, unsigned id, const DrawPoint& pos, const Extent& 
       animations_(this)
 {}
 
+    GLubyte idcs_quad[] = {
+    0,1,2, // first triangle (bottom left - top left - top right)
+    0,2,3 // second triangle (bottom left - top right - bottom right)
+    };
+
 Window::~Window()
 {
     RTTR_Assert(!isInMouseRelay);
@@ -484,34 +489,6 @@ void Window::Draw3D(const Rect& rect, TextureColor tc, unsigned short type, bool
     borderImg->DrawPart(Rect(horImgBorderPos, Extent(rectSize.x, 2)));
     borderImg->DrawPart(Rect(vertImgBorderPos, Extent(2, rectSize.y)));
 
-    // Draw black borders over the img borders
-    glDisable(GL_TEXTURE_2D);
-    glColor3f(0.0f, 0.0f, 0.0f);
-    glBegin(GL_TRIANGLE_STRIP);
-    // Left lower point
-    DrawPoint lbPt = rect.getOrigin() + DrawPoint(rectSize);
-    if(type <= 1)
-    {
-        // Bottom line with edge in left top and right line with little edge on left top
-        glVertex2i(lbPt.x, origin.y);
-        glVertex2i(lbPt.x - 2, origin.y + 1);
-        glVertex2i(lbPt.x, lbPt.y);
-        glVertex2i(lbPt.x - 2, lbPt.y - 2);
-        glVertex2i(origin.x, lbPt.y);
-        glVertex2i(origin.x + 1, lbPt.y - 2);
-    } else
-    {
-        // Top line with edge on right and left line with edge on bottom
-        glVertex2i(origin.x, lbPt.y);
-        glVertex2i(origin.x + 2, lbPt.y - 1);
-        glVertex2i(origin.x, origin.y);
-        glVertex2i(origin.x + 2, origin.y + 2);
-        glVertex2i(lbPt.x, origin.y);
-        glVertex2i(lbPt.x - 1, origin.y + 2);
-    }
-    glEnd();
-    glEnable(GL_TEXTURE_2D);
-
     if(!drawContent)
         return;
 
@@ -547,16 +524,17 @@ void Window::Draw3D(const Rect& rect, TextureColor tc, unsigned short type, bool
 void Window::DrawRectangle(const Rect& rect, unsigned color)
 {
     glDisable(GL_TEXTURE_2D);
-
     glColor4ub(GetRed(color), GetGreen(color), GetBlue(color), GetAlpha(color));
+    
+    GLint rectvx[] = {
+    rect.left, rect.top,
+    rect.left, rect.bottom,
+    rect.right, rect.bottom,
+    rect.right, rect.top
+    };
 
-    glBegin(GL_QUADS);
-    glVertex2i(rect.left, rect.top);
-    glVertex2i(rect.left, rect.bottom);
-    glVertex2i(rect.right, rect.bottom);
-    glVertex2i(rect.right, rect.top);
-    glEnd();
-
+    glVertexPointer(2, GL_INT, 0, rectvx);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, idcs_quad);
     glEnable(GL_TEXTURE_2D);
 }
 
@@ -570,12 +548,13 @@ void Window::DrawLine(DrawPoint pt1, DrawPoint pt2, unsigned short width, unsign
     glDisable(GL_TEXTURE_2D);
     glColor4ub(GetRed(color), GetGreen(color), GetBlue(color), GetAlpha(color));
 
-    glLineWidth(width);
-    glBegin(GL_LINES);
-    glVertex2i(pt1.x, pt1.y);
-    glVertex2i(pt2.x, pt2.y);
-    glEnd();
+    GLint linevx[] = {
+    pt1.x, pt1.y,
+    pt2.x, pt2.y
+    };
 
+    glVertexPointer(2, GL_INT, 0, linevx);
+    glDrawElements(GL_LINES, 2, GL_UNSIGNED_BYTE, idcs_quad);
     glEnable(GL_TEXTURE_2D);
 }
 
