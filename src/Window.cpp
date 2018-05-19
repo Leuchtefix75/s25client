@@ -34,11 +34,6 @@ Window::Window(Window* parent, unsigned id, const DrawPoint& pos, const Extent& 
       animations_(this)
 {}
 
-    GLubyte idcs_quad[] = {
-    0,1,2, // first triangle (bottom left - top left - top right)
-    0,2,3 // second triangle (bottom left - top right - bottom right)
-    };
-
 Window::~Window()
 {
     RTTR_Assert(!isInMouseRelay);
@@ -534,7 +529,7 @@ void Window::DrawRectangle(const Rect& rect, unsigned color)
     };
 
     glVertexPointer(2, GL_INT, 0, rectvx);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, idcs_quad);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
     glEnable(GL_TEXTURE_2D);
 }
 
@@ -554,7 +549,7 @@ void Window::DrawLine(DrawPoint pt1, DrawPoint pt2, unsigned short width, unsign
     };
 
     glVertexPointer(2, GL_INT, 0, linevx);
-    glDrawElements(GL_LINES, 2, GL_UNSIGNED_BYTE, idcs_quad);
+    glDrawArrays(GL_LINES, 0, 2);
     glEnable(GL_TEXTURE_2D);
 }
 
