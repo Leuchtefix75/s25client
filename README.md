@@ -1,3 +1,5 @@
+# development fork to support ARMv7 & GLESv2
+
 # Return To The Roots
 
 "Return To The Roots" is a fan-project, which aims to renew the original The Settlers 2.
@@ -46,7 +48,7 @@ All of them can be installed via homebrew
 
 ### Steps:
 ```
-git clone --recursive https://github.com/Return-To-The-Roots/s25client s25client
+git clone --recursive https://github.com/Leuchtefix75/s25client s25client
 cd s25client/build
 ./cmake.sh --prefix=.
 make
@@ -66,10 +68,10 @@ Note that due to the use of submodules you always need to `git pull && git submo
 - Git Client (i.e TortoiseGit)
 
 ### Steps:
-- Clone GIT Repository from https://github.com/Return-To-The-Roots/s25client
+- Clone GIT Repository from https://github.com/Leuchtefix75/s25client
   - Using Git bash:
      ```
-     git clone --recursive https://github.com/Return-To-The-Roots/s25client s25client
+     git clone --recursive https://github.com/Leuchtefix75/s25client s25client
      ```
 
   - **OR** using TortoiseGit:
