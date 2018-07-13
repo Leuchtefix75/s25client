@@ -76,7 +76,7 @@ Note that due to the use of submodules you always need to `git pull && git submo
 
   - **OR** using TortoiseGit:
      - Rightclick -> "Git clone..."
-     - Put in https://github.com/Return-To-The-Roots/s25client as URL
+     - Put in https://github.com/Leuchtefix75/s25client as URL
      - Select "Directory" to clone to
      - press OK
      - Rightclick on the newly created folder -> TortoiseGit-> Submodule Update
