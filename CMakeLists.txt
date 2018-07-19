@@ -415,7 +415,7 @@ endif()
 
 # Building the updater when using non-default paths (especially absolute paths)
 # is not recommended as it most likely won't work
-set(RTTR_BUILD_UPDATER_DEF ON)
+set(RTTR_BUILD_UPDATER_DEF OFF)
 foreach(curDirVar BINDIR DATADIR LIBDIR DOCDIR DRIVERDIR)
 	if(IS_ABSOLUTE ${RTTR_${curDirVar}})
 		set(RTTR_BUILD_UPDATER_DEF OFF)
@@ -456,7 +456,7 @@ ADD_SUBDIRECTORY(driver)
 ADD_SUBDIRECTORY(rttrConfig)
 ADD_SUBDIRECTORY(src)
 
-option(RTTR_BUILD_EDITOR "Build editor." ON)
+option(RTTR_BUILD_EDITOR "Build editor." OFF)
 if(RTTR_BUILD_EDITOR)
 	add_subdirectory(s25edit)
 endif()
