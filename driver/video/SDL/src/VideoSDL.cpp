@@ -173,6 +173,12 @@ bool VideoSDL::CreateScreen(const std::string& title, const VideoMode& newSize, 
     if(!SetVideoMode(newSize, fullscreen))
         return false;
 
+#ifndef RTTR_HW_CURSOR
+    SDL_ShowCursor(SDL_DISABLE);
+#else
+    screen = SDL_SetVideoMode(screenSize_.width, screenSize_.height, 32, SDL_HWSURFACE | SDL_OPENGL | SDL_RESIZABLE);
+#endif
+
     SDL_WM_SetCaption(title.c_str(), 0);
 
 #ifdef _WIN32
@@ -180,9 +186,7 @@ bool VideoSDL::CreateScreen(const std::string& title, const VideoMode& newSize, 
 #endif
 
     std::fill(keyboard.begin(), keyboard.end(), false);
-#ifndef RTTR_HW_CURSOR
-    SDL_ShowCursor(SDL_DISABLE);
-#endif
+
     return true;
 }
 
