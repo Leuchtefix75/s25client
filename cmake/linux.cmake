@@ -20,5 +20,6 @@ IF(RTTR_ENABLE_OPTIMIZATIONS)
         # simply suggest that all other stuff is ARM
         FORCE_ADD_FLAGS(CMAKE_C_FLAGS   -O3 -march=armv7-a -mfpu=neon -mfloat-abi=hard -DRTTR_HW_CURSOR)
         FORCE_ADD_FLAGS(CMAKE_CXX_FLAGS -O3 -march=armv7-a -mfpu=neon -mfloat-abi=hard -DRTTR_HW_CURSOR)
+	#www.bestoldgames.net/eng/old-games/settlers-2-gold-edition.php
   ENDIF()	
 ENDIF(RTTR_ENABLE_OPTIMIZATIONS)
