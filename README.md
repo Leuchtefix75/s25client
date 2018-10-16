@@ -1,11 +1,20 @@
-# development fork to support ARMv7 & GLESv2
+# my development fork to support ARMv7 & GLESv2
+OK, it's more to hack it, so it fits my need.
+
+It is announced as MESA, which serves openGL environment, become a fixed part of debian,
+the VC4 drivers will be included.
+
+You may have a look at https://github.com/Flamefire/s25client
+It's a fork of the core game, with option to select a architectur and it uses GLAD to handle different openGL standards.
+
+A cmake-GUI is helpful to see and configure/generate some values, befor starting Make.
 
 # Return To The Roots
 
 "Return To The Roots" is a fan-project, which aims to renew the original The Settlers 2.
 
 We aim to extend new features such as a multiplayer mode via internet as well as the support for modern hardware and several operating systems like Windows XP/Vista/Seven, Linux and MacOS X. Likewise we want to invent some smaller upgrades. Unfortunately it is necessary to rewrite the whole game, but we will stick to the original graphics and sounds, because they are still common and nice to be heard or seen.
-So you will still need an original "The Settlers 2 Gold Edition" version to play Return To The Roots.
+So you will still need an original "The Settlers 2 Gold Edition" version (13MB demo version) to play Return To The Roots.
 
 see more information on http://www.rttr.info
 
